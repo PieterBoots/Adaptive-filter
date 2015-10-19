@@ -8,48 +8,48 @@ using System.Threading.Tasks;
 public class AdaptiveFilter
 {
 
-  //W : are unknown filter coefficients
-  //Data : is the data input for the filter
+  //W: are unknown filter coefficients
+  //data : is the data input for the filter
   //learnvalues : are the wanted output value of the filter.
-  public static void bestmatch(ref double[] W, int[,] data, int[] learnvalues,double rate,int t)
+  //rate:  can control the rate of convergence and filter stability.
+  //iteration: Update repetitions
+  public static void bestmatch(ref double[] W, int[,] data, int[] learnvalues,double rate,int iteration)
   {
 
-
     int rows = data.GetLength(0);
-    // q can control the rate of convergence and filter stability.
-    double q = rate;
+  
     Random rnd = new Random();
 
-
     int dimensions = data.GetLength(1);
-    for (int r = 0; r < t; r++)
+    
+    for (int r = 0; r < iteration; r++)
     {
-      int y = rnd.Next(rows);
+      int row = rnd.Next(rows);
 
-      double v = 0;
-      //filter output V given by
-      for (int x = 0; x < dimensions; x++)
+      double FilterOutput = 0;
+      //Calculate filter output
+      for (int d = 0; d < dimensions; d++)
       {
-        v = v + data[y, x] * W[x];
+        FilterOutput = FilterOutput + data[row, d] * W[d];
       }
       //The error signal
-      double err = learnvalues[y] - (v / dimensions);
+      double err = learnvalues[row] - (FilterOutput / dimensions);
       //filter coefficients are updated 
-      for (int x = 0; x < dimensions; x++)
+      for (int d = 0; d < dimensions; d++)
       {
-        W[x] = W[x] + err * data[y, x] * q;
+        W[d] = W[d] + err * data[row, d] * rate;
       }
     }
   }
 
     public static double filter( double[] W,int[] data)
   {
-    double outp = 0;
-    for (int x = 0; x < data.Length; x++)
+    double FilterOutput = 0;
+    for (int d = 0; d < data.Length; d++)
     {
-      outp = outp + W[x] * data[x];
+      FilterOutput = FilterOutput + W[d] * data[d];
     }
 
-    return outp / data.Length;         
+    return FilterOutput / data.Length;         
   }
 }
