@@ -43,16 +43,5 @@ public class AdaptiveFilter
   }
 
 
-  public static double filter( double[] W,int[] data)
-  {
-    double FilterOutput = 0;
-    for (int d = 0; d < data.Length; d++)
-    {
-      FilterOutput = FilterOutput + W[d] * data[d];
-    }
-    return FilterOutput / data.Length;         
-  }
-  
-  
   
 }
