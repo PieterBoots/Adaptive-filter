@@ -6,7 +6,7 @@ Have a look at this website https://en.wikipedia.org/wiki/Adaptive_filter
 
 This is how the library can be used.
 
-  int[,] inp=new int[100000,4];
+      int[,] inp=new int[100000,4];
         int[] learn=new int[100000];
 
         Random rnd=new Random();
