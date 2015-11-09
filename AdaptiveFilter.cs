@@ -33,7 +33,7 @@ public class AdaptiveFilter
         FilterOutput = FilterOutput + data[row, d] * W[d];
       }
       //The error signal
-      double err = learnvalues[row] - (FilterOutput / dimensions);
+      double err = learnvalues[row] - (FilterOutput);
       //filter coefficients are updated 
       for (int d = 0; d < dimensions; d++)
       {
