@@ -33,7 +33,7 @@ public class AdaptiveFilter
         FilterOutput = FilterOutput + data[row, d] * W[d];
       }
       //The error signal
-      double err = learnvalues[row] - (FilterOutput);
+      double err = learnvalues[row] - FilterOutput;
       //filter coefficients are updated 
       for (int d = 0; d < dimensions; d++)
       {
@@ -54,30 +54,5 @@ public class AdaptiveFilter
   }
   
   
-  //classify data
-  // calculate the average based on the data
-  // values higher then average result in 1 else the result equals 0.
-  // put the result in a bit.
-
-   public static int classify(int[] data)
-  {
-    double average = 0;
-    for (int d = 0; d < data.Length; d++)
-    {
-      average = average + data[d];
-    }
-
-    average = average / data.Length;
-
-    int ClassifyNumber = 0;
-
-    for (int d = 0; d < data.Length; d++)
-    {
-      int twos = 1 << d;
-      int v = (data[d] > average) ? twos : 0;
-      ClassifyNumber = ClassifyNumber + v;
-    }
-
-    return ClassifyNumber;
-  }
+  
 }
