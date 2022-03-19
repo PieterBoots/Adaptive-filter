@@ -28,20 +28,13 @@ public class AdaptiveFilter
 
       double FilterOutput = 0;
       //Calculate filter output
-      for (int d = 0; d < dimensions; d++)
-      {
+      for (int d = 0; d < dimensions; d++) 
         FilterOutput = FilterOutput + data[row, d] * W[d];
-      }
       //The error signal
       double err = learnvalues[row] - FilterOutput;
       //filter coefficients are updated 
-      for (int d = 0; d < dimensions; d++)
-      {
-        W[d] = W[d] + err * data[row, d] * rate;
-      }
+      for (int d = 0; d < dimensions; d++)   
+        W[d] = W[d] + err * data[row, d] * rate;   
     }
-  }
-
-
-  
+  }  
 }
